@@ -1,0 +1,20 @@
+table {
+  @apply table table-auto;
+
+  thead {
+    th {
+      @apply text-left font-medium py-3 text-gray-800 px-2;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #eee;
+      @apply hover:bg-gray-100;
+
+      td {
+        @apply text-gray-700 py-2 capitalize px-2;
+      }
+    }
+  }
+}
