@@ -1,6 +1,6 @@
 import Pagination from "./Pagination/Pagination";
 import Search from "./Search/Search";
-import Table from "./Table/Table";
+import TableElement from "./Table/Table";
 import Modal from "./Modal/Modal";
 
 const Body = () => {
@@ -11,7 +11,7 @@ const Body = () => {
       </div>
       <div className="flex flex-col p-5">
         <Search />
-        <Table />
+        <TableElement />
         <Pagination />
         <Modal />
       </div>

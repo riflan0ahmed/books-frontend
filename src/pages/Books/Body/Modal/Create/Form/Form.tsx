@@ -76,6 +76,7 @@ const Form = forwardRef(
 
           dispatch(
             createBook({
+              _id: new Date().toISOString(),
               name: data.name,
               category: data.category,
               quantity: data.quantity,

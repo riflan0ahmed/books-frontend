@@ -18,7 +18,7 @@ const Header = () => {
   }, [dispatch]);
 
   return (
-    <div className="flex flex-row w-full my-8">
+    <div className="flex flex-row w-full mb-8">
       <div className="flex justify-start my-auto mr-auto">Pagination</div>
       <div className="flex justify-end gap-5 ml-auto">
         <Button color="primary" variant="contained" onClick={open}>
