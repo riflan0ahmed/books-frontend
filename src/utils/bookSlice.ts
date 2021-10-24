@@ -55,6 +55,12 @@ export const bookSlice = createSlice({
       const newBook = state.book as InterfaceBook;
       state.books.push(newBook);
     },
+    deleteBook: (state: BookState, action: PayloadAction<string>) => {
+      const filterBooks = state.books?.filter(
+        (book) => book._id !== action.payload
+      );
+      state.books = filterBooks as InterfaceBook[];
+    },
     updateTotal: (state: BookState, action: PayloadAction<number>) => {
       state.total = action.payload;
     },
@@ -88,6 +94,7 @@ export const {
   updateBooks,
   editBooks,
   createBook,
+  deleteBook,
   updateTotal,
   updateQuery,
   updateLimit,
