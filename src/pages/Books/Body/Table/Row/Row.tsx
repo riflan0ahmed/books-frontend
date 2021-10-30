@@ -1,5 +1,6 @@
 import { InterfaceBook } from "interface/book.interface";
 import Actions from "../Actions/Actions";
+const { DateTime } = require("luxon");
 
 const Row = (props: { book: InterfaceBook }) => {
   return (
@@ -8,7 +9,7 @@ const Row = (props: { book: InterfaceBook }) => {
       <td>{props.book.category}</td>
       <td>{props.book.quantity}</td>
       <td>{props.book.amount}</td>
-      <td>{props.book.createdAt}</td>
+      <td>{DateTime.fromISO(props.book.createdAt).toFormat("yyyy LLL dd")}</td>
       <td>
         <Actions book={props.book} />
       </td>

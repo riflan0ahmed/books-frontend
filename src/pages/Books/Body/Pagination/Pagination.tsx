@@ -3,7 +3,7 @@ import {
   selectLimit,
   selectPage,
   selectTotal,
-  updateLimit,
+  // updateLimit,
   updatePage,
 } from "utils/bookSlice";
 import { useAppSelector, useAppDispatch } from "utils/hooks/hook";
