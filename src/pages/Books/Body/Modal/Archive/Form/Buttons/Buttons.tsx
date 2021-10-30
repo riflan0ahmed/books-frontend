@@ -1,7 +1,7 @@
 import { Button } from "@mui/material";
 import axios, { AxiosError } from "axios";
 import { Dispatch, SetStateAction, useCallback } from "react";
-import { deleteBook, selectBook } from "utils/bookSlice";
+import { archiveBook, selectBook } from "utils/bookSlice";
 import { useAppDispatch, useAppSelector } from "utils/hooks/hook";
 
 const Buttons = (props: { close: Dispatch<SetStateAction<boolean>> }) => {
@@ -18,13 +18,16 @@ const Buttons = (props: { close: Dispatch<SetStateAction<boolean>> }) => {
     const url = process.env.REACT_APP_BACKEND_URL;
 
     try {
-      await axios.delete(`${url}/books/${bookId}`, {
-        params: {
-          id: book,
-        },
+      await axios.patch(`${url}/books/${bookId}`, {
+        isArchived: true,
       });
 
-      dispatch(deleteBook(bookId as string));
+      dispatch(
+        archiveBook({
+          ...book,
+          isArchived: true,
+        })
+      );
 
       handleClose();
     } catch (error) {
@@ -53,7 +56,7 @@ const Buttons = (props: { close: Dispatch<SetStateAction<boolean>> }) => {
           fullWidth={true}
           onClick={handleArchive}
         >
-          Delete
+          Archive
         </Button>
       </div>
     </>

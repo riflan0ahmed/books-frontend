@@ -1,6 +1,7 @@
 import Create from "./Create/Create";
 import Edit from "./Edit/Edit";
 import Preview from "./Preview/Preview";
+import Archive from "./Archive/Archive";
 import Delete from "./Delete/Delete";
 
 const Modal = () => {
@@ -9,6 +10,7 @@ const Modal = () => {
       <Preview />
       <Edit />
       <Create />
+      <Archive />
       <Delete />
     </>
   );

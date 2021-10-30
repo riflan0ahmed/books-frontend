@@ -17,7 +17,7 @@ const Form = forwardRef(
         className="flex flex-col w-3/4 h-auto bg-white rounded-lg shadow-lg lg:w-3/5 xl:w-2/4 2xl:w-2/6 max-h-4/6"
       >
         <div className="flex justify-start px-5 py-3 mb-auto font-medium text-gray-700 uppercase border-b border-gray-200">
-          Delete
+          Archive
         </div>
         <div className="flex h-full p-5">
           <Fields />

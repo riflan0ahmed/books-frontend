@@ -15,6 +15,7 @@ interface BookState {
     edit: boolean;
     archive: boolean;
     create: boolean;
+    delete: boolean;
   };
 }
 
@@ -31,6 +32,7 @@ const initialState: BookState = {
     edit: false,
     archive: false,
     create: false,
+    delete: false,
   },
 };
 
@@ -61,6 +63,12 @@ export const bookSlice = createSlice({
       );
       state.books = filterBooks as InterfaceBook[];
     },
+    archiveBook: (state: BookState, action: PayloadAction<InterfaceBook>) => {
+      const filterBooks = state.books?.filter(
+        (book) => book._id !== action.payload._id
+      );
+      state.books = filterBooks as InterfaceBook[];
+    },
     updateTotal: (state: BookState, action: PayloadAction<number>) => {
       state.total = action.payload;
     },
@@ -85,6 +93,9 @@ export const bookSlice = createSlice({
     updateModalCreate: (state: BookState, action: PayloadAction<boolean>) => {
       state.modal.create = action.payload;
     },
+    updateModalDelete: (state: BookState, action: PayloadAction<boolean>) => {
+      state.modal.delete = action.payload;
+    },
   },
 });
 
@@ -95,6 +106,7 @@ export const {
   editBooks,
   createBook,
   deleteBook,
+  archiveBook,
   updateTotal,
   updateQuery,
   updateLimit,
@@ -103,6 +115,7 @@ export const {
   updateModalEdit,
   updateModalArchive,
   updateModalCreate,
+  updateModalDelete,
 } = bookSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
@@ -124,5 +137,7 @@ export const selectModalArchive = (state: RootState) =>
   state.book.modal.archive as boolean;
 export const selectModalCreate = (state: RootState) =>
   state.book.modal.create as boolean;
+export const selectModalDelete = (state: RootState) =>
+  state.book.modal.delete as boolean;
 
 export default bookSlice.reducer;

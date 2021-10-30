@@ -6,12 +6,13 @@ import {
   updateModalArchive,
   updateModalEdit,
   updateModalPreview,
+  updateModalDelete,
 } from "utils/bookSlice";
 
 const Actions = (props: { book: InterfaceBook }) => {
   const dispatch = useAppDispatch();
 
-  const toggleModal = (type: "edit" | "preview" | "archive") => {
+  const toggleModal = (type: "edit" | "preview" | "archive" | "delete") => {
     dispatch(updateBook(props.book));
     switch (type) {
       case "edit":
@@ -20,6 +21,8 @@ const Actions = (props: { book: InterfaceBook }) => {
         return dispatch(updateModalPreview(true));
       case "archive":
         return dispatch(updateModalArchive(true));
+      case "delete":
+        return dispatch(updateModalDelete(true));
     }
   };
 
@@ -46,6 +49,13 @@ const Actions = (props: { book: InterfaceBook }) => {
       >
         Archive
       </Button>
+      {/* <Button
+        color="error"
+        variant="text"
+        onClick={() => toggleModal("delete")}
+      >
+        Delete
+      </Button> */}
     </div>
   );
 };

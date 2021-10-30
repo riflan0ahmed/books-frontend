@@ -1,18 +1,18 @@
 import { Modal } from "@mui/material";
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
-import { selectModalDelete, updateModalDelete } from "utils/bookSlice";
+import { selectModalArchive, updateModalArchive } from "utils/bookSlice";
 import { useAppSelector } from "utils/hooks/hook";
 import Form from "./Form/Form";
 
-const Delete = () => {
+const Archive = () => {
   const modalRef = useRef(null);
   const dispatch = useDispatch();
 
-  const open = useAppSelector(selectModalDelete);
+  const open = useAppSelector(selectModalArchive);
 
   const close = () => {
-    dispatch(updateModalDelete(false));
+    dispatch(updateModalArchive(false));
   };
 
   return (
@@ -27,4 +27,4 @@ const Delete = () => {
   );
 };
 
-export default Delete;
+export default Archive;
