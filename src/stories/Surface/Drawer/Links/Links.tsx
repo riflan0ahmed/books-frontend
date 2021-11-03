@@ -5,10 +5,13 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import MailIcon from "@mui/icons-material/Mail";
 import { Link, useLocation } from "react-router-dom";
+import { blue } from "@mui/material/colors";
 
 const Links = () => {
   const location = useLocation();
   const router = location.pathname;
+
+  const color = blue[50];
 
   return (
     <div>
@@ -20,7 +23,7 @@ const Links = () => {
           <ListItem
             button
             style={{
-              backgroundColor: `${router === "/" ? "red" : "transparent"}`,
+              backgroundColor: `${router === "/" ? color : "transparent"}`,
             }}
           >
             <ListItemIcon>
@@ -33,7 +36,7 @@ const Links = () => {
           <ListItem
             button
             style={{
-              backgroundColor: `${router === "/books" ? "red" : "transparent"}`,
+              backgroundColor: `${router === "/books" ? color : "transparent"}`,
             }}
           >
             <ListItemIcon>
