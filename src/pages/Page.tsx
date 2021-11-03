@@ -27,9 +27,9 @@ const Page = () => {
   return (
     <BrowserRouter>
       {isAuthenticated ? (
-        <div className="grid grid-cols-12 gap-5">
-          <div className="col-span-2"></div>
-          <div className="flex flex-col col-span-10">
+        <div className="grid grid-cols-10 gap-5">
+          <div className="col-span-1"></div>
+          <div className="flex flex-col h-screen col-span-9 bg-gray-50">
             <Navbar label="Books" />
 
             <Switch>

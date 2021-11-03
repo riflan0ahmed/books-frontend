@@ -40,7 +40,7 @@ const Books = () => {
   }, [fetchBooks]);
 
   return (
-    <div className="w-full p-10 bg-gray-100">
+    <div className="w-full p-8">
       <Header />
       <Body />
     </div>
