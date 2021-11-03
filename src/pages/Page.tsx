@@ -10,6 +10,7 @@ import { useHistory } from "react-router-dom";
 import Register from "./Auth/Register/Register";
 import useLocalStorage from "hooks/useLocalStorage";
 import Navbar from "stories/Surface/Navbar/Navbar";
+import Drawer from "stories/Surface/Drawer/Drawer";
 
 const Page = () => {
   const isAuthenticated = useAppSelector(selectIsAuthenticated);
@@ -27,9 +28,11 @@ const Page = () => {
   return (
     <BrowserRouter>
       {isAuthenticated ? (
-        <div className="grid grid-cols-10 gap-5">
-          <div className="col-span-1"></div>
-          <div className="flex flex-col h-screen col-span-9 bg-gray-50">
+        <div className="grid grid-cols-8 gap-5">
+          <div className="col-span-1">
+            <Drawer />
+          </div>
+          <div className="flex flex-col h-screen col-span-7 bg-gray-50">
             <Navbar label="Books" />
 
             <Switch>
