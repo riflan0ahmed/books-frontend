@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
-import { InterfaceBook } from "interface/book.interface";
+import { InterfaceBook } from "utils/interface/book.interface";
 import { useCallback, useEffect, useState } from "react";
-import { updateBooks } from "utils/bookSlice";
+import { updateBooks } from "utils/redux/bookSlice";
 import { useAppDispatch } from "utils/hooks/hook";
 
 const useFetch = () => {

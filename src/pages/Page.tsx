@@ -1,42 +1,48 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Login from "./Auth/Login/Login";
-import Users from "./Users";
-import Home from "./Home";
-import Books from "./Books/Books";
-import { useEffect } from "react";
-import { useAppSelector } from "utils/hooks/hook";
-import { selectIsAuthenticated } from "utils/userSlice";
-import { useHistory } from "react-router-dom";
-import Register from "./Auth/Register/Register";
-import useLocalStorage from "hooks/useLocalStorage";
+import useLocalStorage from "use-local-storage";
+import AuthGuard from "./AuthGuard/AuthGuard";
+import Register from "./unprotected/Register/Register";
+import Login from "./unprotected/Login/Login";
+import Users from "./protected/Users/Users";
+import Dashboard from "./protected/Dashboard/Dashboard";
+import Books from "./protected/Books/Books";
+import NotFound from "./unprotected/NotFound/NotFound";
 
 const Page = () => {
-  const isAuthenticated = useAppSelector(selectIsAuthenticated);
-  const router = useHistory();
-
-  useLocalStorage();
-
-  useEffect(() => {
-    if (!isAuthenticated) {
-      console.log("Page", isAuthenticated);
-      return router?.replace("/login");
-    }
-  }, [router, isAuthenticated]);
+  const [local, setLocal] = useLocalStorage("auth", "");
 
   return (
     <BrowserRouter>
-      {isAuthenticated ? (
-        <Switch>
-          <Route path="/books" component={Books} />
-          <Route path="/users" component={Users} />
-          <Route exact path="/" component={Home} />
-        </Switch>
-      ) : (
-        <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-        </Switch>
-      )}
+      <Switch>
+        {/* Public routes */}
+
+        <Route path="/login">
+          <Login local={local} setLocal={setLocal} />
+        </Route>
+        <Route path="/register" component={Register} />
+
+        {/* Protected Routes */}
+        <Route path="/books">
+          <AuthGuard auth={local}>
+            <Books />
+          </AuthGuard>
+        </Route>
+        <Route path="/users">
+          <AuthGuard auth={local}>
+            <Users />
+          </AuthGuard>
+        </Route>
+        <Route exact path="/">
+          <AuthGuard auth={local}>
+            <Dashboard />
+          </AuthGuard>
+        </Route>
+
+        {/* Not Found route */}
+        <Route path="*">
+          <NotFound />
+        </Route>
+      </Switch>
     </BrowserRouter>
   );
 };
